@@ -28,5 +28,4 @@ function onGalleryItemClick(event) {
   const lightbox = new SimpleLightbox('.gallery a', {
     captionDelay: 250,
   });
-  lightbox.destroy();
 }
