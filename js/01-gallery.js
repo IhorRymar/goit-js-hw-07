@@ -28,12 +28,25 @@ function onGalleryContainerClick(e) {
   if (!isImageEl) {
     return;
   } else {
-    const instance = basicLightbox.create(`
+    const instance = basicLightbox.create(
+      `
     <img
       src="${e.target.dataset.source}"/>
-    `);
+    `,
+      {
+        onShow: () => {
+          window.addEventListener('keydown', onEscapePress);
+        },
+      }
+    );
 
     instance.show();
+
+    function onEscapePress(e) {
+      if (e.code === 'Escape') {
+        instance.close();
+        window.removeEventListener('keydown', onEscapePress);
+      }
+    }
   }
-  // console.log(e.target);
 }
